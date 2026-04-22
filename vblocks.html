@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>VBlocks — Privacy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <style>
+
+    :root{
+      --bg-1:#090b16;
+      --bg-2:#12182c;
+      --bg-3:#2c1845;
+      --bg-4:#5b224c;
+
+      --text:#f8f9ff;
+      --muted:rgba(255,255,255,0.74);
+      --line:rgba(255,255,255,0.10);
+
+      --doc-bg:#ffffff;
+      --doc-ink:#1b1f24;
+      --doc-muted:#5b6470;
+      --doc-line:#e6e9ef;
+      --doc-card:#f6f8fb;
+      --brand:#2f7cf6;
+
+      --card-shadow:0 18px 50px rgba(0,0,0,0.32);
+      --doc-shadow:0 26px 70px rgba(0,0,0,0.28);
+
+      --radius-xl:30px;
+      --radius-lg:24px;
+      --radius-md:18px;
+
+      --max-width:1160px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 10% 15%, rgba(88,130,255,0.22), transparent 24%),
+        radial-gradient(circle at 85% 20%, rgba(255,90,180,0.16), transparent 22%),
+        radial-gradient(circle at 50% 85%, rgba(0,220,255,0.09), transparent 24%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 38%, var(--bg-3) 68%, var(--bg-4));
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:0.16;
+      background:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size:38px 38px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.08));
+    }
+
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max-width), calc(100% - 32px)); margin:0 auto}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:30;
+      background:rgba(8,10,20,0.34);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:nowrap;
+    }
+
+    .nav-left{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-left:auto;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .back-home{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(255,255,255,0.14);
+      background:linear-gradient(135deg, rgba(255,255,255,0.20), rgba(255,255,255,0.06));
+      box-shadow:0 10px 28px rgba(0,0,0,0.22);
+      color:#fff;
+      flex:0 0 46px;
+      transition:0.22s ease;
+    }
+
+    .back-home:hover{
+      transform:translateY(-2px);
+      background:linear-gradient(135deg, rgba(255,255,255,0.26), rgba(255,255,255,0.10));
+    }
+
+    .back-home svg{
+      width:20px;
+      height:20px;
+      display:block;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+
+    .brand-mark{
+      width:46px;
+      height:46px;
+      border-radius:15px;
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(255,255,255,0.14);
+      background:linear-gradient(135deg, rgba(255,255,255,0.20), rgba(255,255,255,0.06));
+      box-shadow:0 10px 28px rgba(0,0,0,0.22);
+      overflow:hidden;
+      flex:0 0 46px;
+    }
+
+    .brand-mark img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .brand-text strong{
+      display:block;
+      font-size:1.06rem;
+      letter-spacing:0.4px;
+    }
+
+    main{padding:0 0 48px}
+
+    .hero{
+      padding:56px 0 18px;
+    }
+
+    .hero-card{
+      padding:34px;
+      border-radius:30px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.10);
+      box-shadow:var(--card-shadow);
+      backdrop-filter:blur(10px);
+    }
+
+    .app-top{
+      display:grid;
+      grid-template-columns:160px 1fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .app-logo-shell{
+      width:160px;
+      aspect-ratio:1/1;
+      border-radius:32px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.14);
+      background:linear-gradient(145deg, rgba(255,255,255,0.14), rgba(255,255,255,0.05));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.08), 0 14px 34px rgba(0,0,0,0.18);
+    }
+
+    .app-logo-shell img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .app-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.10);
+      border:1px solid rgba(255,255,255,0.12);
+      color:rgba(255,255,255,0.84);
+      font-size:0.88rem;
+      margin-bottom:12px;
+    }
+
+    .hero-title{
+      margin:0 0 12px;
+      font-size:clamp(2.2rem, 5vw, 4rem);
+      line-height:0.95;
+      letter-spacing:-1.4px;
+      text-shadow:0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    .hero-desc{
+      margin:0;
+      max-width:760px;
+      color:var(--muted);
+      font-size:1.04rem;
+      line-height:1.75;
+    }
+
+    .hero-lang{
+      display:none;
+    }
+
+    .app-kicker,
+    .shots-note,
+    .shot-placeholder{
+      display:none !important;
+    }
+
+    .shots{
+      padding:10px 0 0;
+    }
+
+    .shots-head{
+      margin:0 0 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .shots-title{
+      margin:0;
+      font-size:1.32rem;
+      letter-spacing:-0.4px;
+    }
+
+    .shots-note{
+      color:var(--muted);
+      font-size:0.94rem;
+    }
+
+    .shots-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+    }
+
+    .shot-card{
+      padding:14px;
+      border-radius:24px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.10);
+      box-shadow:var(--card-shadow);
+    }
+
+    .shot-frame{
+      position:relative;
+      aspect-ratio:10/18;
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.12);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.16), transparent 24%),
+        linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .shot-frame img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .shot-placeholder{
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:18px;
+      text-align:center;
+      color:rgba(255,255,255,0.84);
+    }
+
+    .shot-placeholder strong{
+      font-size:1.02rem;
+      letter-spacing:0.2px;
+    }
+
+    .shot-placeholder span{
+      font-size:0.86rem;
+      color:rgba(255,255,255,0.64);
+      line-height:1.5;
+    }
+
+    .shot-meta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-top:12px;
+      color:rgba(255,255,255,0.78);
+      font-size:0.88rem;
+    }
+
+    .shot-badge{
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.10);
+      font-size:0.78rem;
+      letter-spacing:0.2px;
+    }
+
+    .policy-shell{
+      margin-top:26px;
+      padding:0;
+      background:transparent;
+      color:var(--text);
+      border-radius:0;
+      box-shadow:none;
+    }
+
+    .langbar{
+      display:none;
+    }
+
+    .chips,.lang-switcher{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+    }
+
+    .chip,.lang-btn{
+      width:46px;
+      height:40px;
+      border:none;
+      border-radius:12px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.10);
+      color:#fff;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      transition:0.22s ease;
+      box-shadow:0 8px 22px rgba(0,0,0,0.18);
+      padding:0;
+      font-size:14px;
+      font-family:inherit;
+    }
+
+    .chip:hover,.lang-btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,0.13);
+      border-color:rgba(255,255,255,0.18);
+    }
+
+    .chip[aria-pressed="true"], .lang-btn.active{
+      background:rgba(255,255,255,0.18);
+      border-color:rgba(255,255,255,0.28);
+    }
+
+    .flag,.flagSvg{
+      width:22px;
+      height:22px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.10);
+      background:#fff;
+      flex:0 0 22px;
+    }
+
+    .flag svg, .flagSvg svg, .lang-btn svg{
+      width:100%;
+      height:100%;
+      display:block;
+    }
+
+    .lang-btn svg{
+      width:24px;
+      height:18px;
+      display:block;
+      border-radius:3px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.25);
+    }
+
+    .mono{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:rgba(255,255,255,0.10);
+      color:#f8f9ff;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.12);
+      font-size:12px;
+    }
+
+    .grid,.split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .lang-section > header{
+      padding:24px;
+      border-radius:24px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.10);
+      box-shadow:var(--card-shadow);
+      backdrop-filter:blur(10px);
+      margin-bottom:18px;
+    }
+
+    .split > section{
+      padding:24px;
+      border-radius:24px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.10);
+      box-shadow:var(--card-shadow);
+      backdrop-filter:blur(10px);
+    }
+
+    h1,h2,h3{color:var(--text)}
+    h1{margin:0 0 8px;font-size:28px}
+    h2{margin:0 0 12px;font-size:20px}
+    p,li{line-height:1.7;color:var(--muted)}
+    .subtitle{color:var(--muted);margin:0 0 18px}
+    .card{
+      background:rgba(255,255,255,0.07);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,0.10);
+      border-radius:24px;
+      padding:24px;
+      margin:0 0 18px;
+      box-shadow:var(--card-shadow);
+      backdrop-filter:blur(10px);
+    }
+    .mail,a.mail{
+      color:#cfe0ff;
+    }
+    .footer{
+      color:rgba(255,255,255,0.64);
+      font-size:13px;
+      margin-top:18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 24px;
+      border-radius:24px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.10);
+      box-shadow:var(--card-shadow);
+      backdrop-filter:blur(10px);
+    }
+
+    hr{
+      display:none;
+    }
+
+    .lang-section{display:none}
+    .lang-section.active{display:block}
+    .hero-lang.active{display:block}
+
+    @media (max-width:1024px){
+      .shots-grid{grid-template-columns:1fr 1fr}
+    }
+
+    @media (max-width:860px){
+      .grid,.split{grid-template-columns:1fr}
+      .app-top{grid-template-columns:1fr; text-align:center}
+      .app-logo-shell{margin:0 auto}
+      .hero-desc{margin:0 auto}
+    }
+
+    @media (max-width:640px){
+      .container{width:min(var(--max-width), calc(100% - 20px))}
+      .nav{min-height:auto;padding:14px 0}
+      .hero{padding:38px 0 10px}
+      .hero-card{padding:22px}
+      .policy-shell{padding:0}
+      .shots-grid{grid-template-columns:1fr}
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container nav">
+      <div class="nav-left">
+        <a href="index.html" class="back-home" aria-label="Retour à l'accueil">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <a href="index.html" class="brand" aria-label="Retour à l'accueil VBoldStudio">
+          <div class="brand-mark">
+            <img src="assets/logos/vboldstudio-logo.png" alt="Logo VBoldStudio" />
+          </div>
+          <div class="brand-text">
+            <strong>VBoldStudio</strong>
+          </div>
+        </a>
+      </div>
+
+      <div class="nav-right">
+        <div class="lang-switcher" id="langChips" aria-label="Choix de langue">
+        <button class="lang-btn" type="button" data-lang="fr" aria-label="Français" title="Français"><svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="2" x="0" fill="#0055A4"/><rect width="1" height="2" x="1" fill="#FFFFFF"/><rect width="1" height="2" x="2" fill="#EF4135"/></svg></button>
+            <button class="lang-btn active" type="button" data-lang="en" aria-label="English" title="English"><svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="#B22234"/><g fill="#FFFFFF"><rect y="2.307" width="60" height="2.307"/><rect y="6.923" width="60" height="2.307"/><rect y="11.538" width="60" height="2.307"/><rect y="16.153" width="60" height="2.307"/><rect y="20.769" width="60" height="2.307"/><rect y="25.384" width="60" height="2.307"/></g><rect width="24" height="16.154" fill="#3C3B6E"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div class="app-top">
+            <div class="app-logo-shell">
+              <img src="assets/logos/vblocks-logo.png" alt="Logo VBlocks" />
+            </div>
+
+            <div>
+              <h1 class="hero-title">VBlocks</h1>
+              <div class="hero-lang lang-section" data-lang="fr"><p class="hero-desc">Un jeu de puzzle rapide et accessible, pensé pour des sessions courtes, lisibles et immédiatement rejouables.</p></div><div class="hero-lang lang-section active" data-lang="en"><p class="hero-desc">A fast and accessible puzzle game designed for short sessions, clear gameplay, and instant replay value.</p></div>
+            </div>
+          </div>
+
+          <section class="shots">
+            <div class="shots-head">
+              <h2 class="shots-title">Visuels de la page</h2>
+            </div>
+
+            <div class="shots-grid">
+              
+              <article class="shot-card">
+                <div class="shot-frame">
+                  <img src="assets/screenshots/vblocks_01.webp" alt="VBlocks screenshot 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <div class="shot-placeholder" style="display:none;">
+                    <strong>Screenshot 01</strong>
+                    <span>Ajoute ton image ici<br>assets/screenshots/vblocks_01.webp</span>
+                  </div>
+                </div>
+                <div class="shot-meta">
+                  <span>VBlocks</span>
+                  <span class="shot-badge">01</span>
+                </div>
+              </article>
+              <article class="shot-card">
+                <div class="shot-frame">
+                  <img src="assets/screenshots/vblocks_02.webp" alt="VBlocks screenshot 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <div class="shot-placeholder" style="display:none;">
+                    <strong>Screenshot 02</strong>
+                    <span>Ajoute ton image ici<br>assets/screenshots/vblocks_02.webp</span>
+                  </div>
+                </div>
+                <div class="shot-meta">
+                  <span>VBlocks</span>
+                  <span class="shot-badge">02</span>
+                </div>
+              </article>
+              <article class="shot-card">
+                <div class="shot-frame">
+                  <img src="assets/screenshots/vblocks_03.webp" alt="VBlocks screenshot 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <div class="shot-placeholder" style="display:none;">
+                    <strong>Screenshot 03</strong>
+                    <span>Ajoute ton image ici<br>assets/screenshots/vblocks_03.webp</span>
+                  </div>
+                </div>
+                <div class="shot-meta">
+                  <span>VBlocks</span>
+                  <span class="shot-badge">03</span>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="policy-shell">
+        <div class="langbar">
+          <div class="chips" id="langChips">
+            
+            <button class="lang-btn" type="button" data-lang="fr" aria-label="Français" title="Français"><svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="2" x="0" fill="#0055A4"/><rect width="1" height="2" x="1" fill="#FFFFFF"/><rect width="1" height="2" x="2" fill="#EF4135"/></svg></button>
+            <button class="lang-btn active" type="button" data-lang="en" aria-label="English" title="English"><svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="#B22234"/><g fill="#FFFFFF"><rect y="2.307" width="60" height="2.307"/><rect y="6.923" width="60" height="2.307"/><rect y="11.538" width="60" height="2.307"/><rect y="16.153" width="60" height="2.307"/><rect y="20.769" width="60" height="2.307"/><rect y="25.384" width="60" height="2.307"/></g><rect width="24" height="16.154" fill="#3C3B6E"/></svg></button>
+          
+          </div>
+
+          <div class="pill">
+            <span>Publisher:</span> <b>Vboldstudio</b>
+          </div>
+        </div>
+
+        <section class="lang-section" id="lang-fr" data-lang="fr">
+
+          <header>
+            <h1>VBlocks — Règles de confidentialité</h1>
+            <p class="subtitle">Dernière mise à jour : <span class="date-fr"></span> — Éditeur : <strong>Vboldstudio</strong></p>
+          </header>
+
+          <section class="card">
+            <p>Cette page décrit de manière simple comment <strong>VBlocks</strong> traite certaines données liées à l’affichage de publicités via <strong>Google AdMob</strong> et ses partenaires techniques. <br><strong>Important :</strong> l’acceptation ou le refus de la personnalisation publicitaire se règle <strong>uniquement dans l’application</strong> dans les paramètres.</p>
+          </section>
+
+          <div class="split">
+            <section>
+              <h2>1) Données traitées</h2>
+              <ul>
+                <li>Identifiant publicitaire de l’appareil si disponible.</li>
+                <li>Données techniques de base comme le modèle, la langue et la version de l’app.</li>
+                <li>Informations d’affichage et de mesure des annonces.</li>
+                <li>Votre choix d’acceptation ou de refus enregistré dans l’application.</li>
+              </ul>
+
+              <h2>2) Finalités</h2>
+              <ul>
+                <li>Afficher des publicités et mesurer leur performance.</li>
+                <li>Lutter contre la fraude et améliorer la sécurité.</li>
+                <li>Personnaliser les annonces uniquement si vous l’avez autorisé.</li>
+              </ul>
+
+              <h2>3) Partenaires</h2>
+              <p>Pour les annonces, VBlocks utilise <strong>Google AdMob</strong> et des partenaires techniques comme <strong>Unity Ads</strong>.</p>
+              <ul>
+                <li><a class="mail" href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Politique Google AdMob</a></li>
+                <li><a class="mail" href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Politique Unity Ads</a></li>
+              </ul>
+            </section>
+
+            <section>
+              <h2>4) Votre choix</h2>
+              <p>Vous pouvez accepter ou refuser la personnalisation publicitaire dans l’application via <em>Paramètres &gt; Publicités</em>. En cas de refus, des annonces non personnalisées peuvent être affichées.</p>
+
+              <h2>5) Conservation et sécurité</h2>
+              <p>Les données sont conservées le temps nécessaire aux finalités ci-dessus et selon les obligations légales applicables. Des mesures raisonnables sont prises pour les protéger.</p>
+
+              <h2>6) Contact et droits</h2>
+              <p>Pour toute demande d’accès, de suppression ou d’opposition : <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a>.</p>
+
+              <h2>7) Mises à jour</h2>
+              <p>Cette page peut évoluer. La date ci-dessus sera mise à jour en cas de changement important.</p>
+            </section>
+          </div>
+
+        </section>
+
+        <section class="lang-section active" id="lang-en" data-lang="en">
+
+          <header>
+            <h1>VBlocks — Privacy Policy</h1>
+            <p class="subtitle">Last updated: <span class="date-en"></span> — Publisher: <strong>Vboldstudio</strong></p>
+          </header>
+
+          <section class="card">
+            <p>This page briefly explains how <strong>VBlocks</strong> handles certain data to display ads through <strong>Google AdMob</strong> and technical partners. <br><strong>Important:</strong> consent for personalized ads is managed <strong>only inside the app</strong> in settings.</p>
+          </section>
+
+          <div class="split">
+            <section>
+              <h2>1) Data processed</h2>
+              <ul>
+                <li>Device advertising ID when available.</li>
+                <li>Basic technical data such as device model, language, and app version.</li>
+                <li>Ad delivery and measurement information.</li>
+                <li>Your allow or deny choice stored inside the app.</li>
+              </ul>
+
+              <h2>2) Purposes</h2>
+              <ul>
+                <li>Display ads and measure performance.</li>
+                <li>Prevent fraud and improve security.</li>
+                <li>Personalize ads only when you have allowed it.</li>
+              </ul>
+
+              <h2>3) Partners</h2>
+              <p>For ads, VBlocks uses <strong>Google AdMob</strong> and technical partners such as <strong>Unity Ads</strong>.</p>
+              <ul>
+                <li><a class="mail" href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google AdMob Policy</a></li>
+                <li><a class="mail" href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity Ads Policy</a></li>
+              </ul>
+            </section>
+
+            <section>
+              <h2>4) Your choice</h2>
+              <p>You can allow or deny personalized ads in the app through <em>Settings &gt; Ads</em>. If denied, non-personalized ads may still be shown.</p>
+
+              <h2>5) Retention and security</h2>
+              <p>Data is kept only as needed for the purposes above and according to applicable legal obligations. Reasonable measures are used to protect it.</p>
+
+              <h2>6) Contact and rights</h2>
+              <p>For any access, deletion, or objection request: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a>.</p>
+
+              <h2>7) Updates</h2>
+              <p>This page may change. The date above will be updated if a material change happens.</p>
+            </section>
+          </div>
+
+        </section>
+
+        <hr>
+
+        <footer class="footer">
+          <div>© <span id="year">—</span> <strong>Vboldstudio</strong></div>
+          <div>Contact: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></div>
+    </footer>
+    </div>
+  </main>
+
+  <script>
+    (function(){
+      "use strict";
+      const DEFAULT_LANG = "en";
+      const STORAGE_KEY = "vblocks_privacy_lang";
+      const now = new Date();
+      const pad = (n)=> String(n).padStart(2,'0');
+      const fr = `${pad(now.getDate())}/${pad(now.getMonth()+1)}/${now.getFullYear()}`;
+      const iso = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`;
+
+      document.querySelectorAll(".date-fr").forEach(el => el.textContent = fr);
+      document.querySelectorAll(".date-en").forEach(el => el.textContent = iso);
+      document.getElementById("year").textContent = String(now.getFullYear());
+
+      function safeGet(k){ try { return localStorage.getItem(k); } catch(_) { return null; } }
+      function safeSet(k,v){ try { localStorage.setItem(k,v); } catch(_) {} }
+
+      const chips = Array.from(document.querySelectorAll("#langChips [data-lang]"));
+      const sections = Array.from(document.querySelectorAll(".lang-section"));
+
+      function setLang(lang){
+        if(!sections.some(s => s.dataset.lang === lang)) lang = DEFAULT_LANG;
+        sections.forEach(s => s.classList.toggle("active", s.dataset.lang === lang));
+        chips.forEach(btn => {
+          const isActive = btn.dataset.lang === lang;
+          btn.classList.toggle("active", isActive);
+          btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+        });
+        document.documentElement.setAttribute("lang", lang);
+        safeSet(STORAGE_KEY, lang);
+      }
+
+      chips.forEach(btn => btn.addEventListener("click", () => setLang(btn.dataset.lang)));
+
+      let init = safeGet(STORAGE_KEY);
+      if(!init){
+        const nav = (navigator.language || "en").toLowerCase();
+        init = nav.startsWith("fr") ? "fr" : "en";
+      }
+
+      setLang(init);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>VUniverse — Privacy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <style>
+
+    :root{
+      --bg-1:#090b16;
+      --bg-2:#12182c;
+      --bg-3:#2c1845;
+      --bg-4:#5b224c;
+
+      --text:#f8f9ff;
+      --muted:rgba(255,255,255,0.74);
+      --line:rgba(255,255,255,0.10);
+
+      --doc-bg:#ffffff;
+      --doc-ink:#1b1f24;
+      --doc-muted:#5b6470;
+      --doc-line:#e6e9ef;
+      --doc-card:#f6f8fb;
+      --brand:#2f7cf6;
+
+      --card-shadow:0 18px 50px rgba(0,0,0,0.32);
+      --doc-shadow:0 26px 70px rgba(0,0,0,0.28);
+
+      --radius-xl:30px;
+      --radius-lg:24px;
+      --radius-md:18px;
+
+      --max-width:1160px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 10% 15%, rgba(88,130,255,0.22), transparent 24%),
+        radial-gradient(circle at 85% 20%, rgba(255,90,180,0.16), transparent 22%),
+        radial-gradient(circle at 50% 85%, rgba(0,220,255,0.09), transparent 24%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 38%, var(--bg-3) 68%, var(--bg-4));
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:0.16;
+      background:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size:38px 38px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.08));
+    }
+
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max-width), calc(100% - 32px)); margin:0 auto}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:30;
+      background:rgba(8,10,20,0.34);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:nowrap;
+    }
+
+    .nav-left{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-left:auto;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .back-home{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(255,255,255,0.14);
+      background:linear-gradient(135deg, rgba(255,255,255,0.20), rgba(255,255,255,0.06));
+      box-shadow:0 10px 28px rgba(0,0,0,0.22);
+      color:#fff;
+      flex:0 0 46px;
+      transition:0.22s ease;
+    }
+
+    .back-home:hover{
+      transform:translateY(-2px);
+      background:linear-gradient(135deg, rgba(255,255,255,0.26), rgba(255,255,255,0.10));
+    }
+
+    .back-home svg{
+      width:20px;
+      height:20px;
+      display:block;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+
+    .brand-mark{
+      width:46px;
+      height:46px;
+      border-radius:15px;
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(255,255,255,0.14);
+      background:linear-gradient(135deg, rgba(255,255,255,0.20), rgba(255,255,255,0.06));
+      box-shadow:0 10px 28px rgba(0,0,0,0.22);
+      overflow:hidden;
+      flex:0 0 46px;
+    }
+
+    .brand-mark img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .brand-text strong{
+      display:block;
+      font-size:1.06rem;
+      letter-spacing:0.4px;
+    }
+
+    main{padding:0 0 48px}
+
+    .hero{
+      padding:56px 0 18px;
+    }
+
+    .hero-card{
+      padding:34px;
+      border-radius:30px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.10);
+      box-shadow:var(--card-shadow);
+      backdrop-filter:blur(10px);
+    }
+
+    .app-top{
+      display:grid;
+      grid-template-columns:160px 1fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .app-logo-shell{
+      width:160px;
+      aspect-ratio:1/1;
+      border-radius:32px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.14);
+      background:linear-gradient(145deg, rgba(255,255,255,0.14), rgba(255,255,255,0.05));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.08), 0 14px 34px rgba(0,0,0,0.18);
+    }
+
+    .app-logo-shell img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .app-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.10);
+      border:1px solid rgba(255,255,255,0.12);
+      color:rgba(255,255,255,0.84);
+      font-size:0.88rem;
+      margin-bottom:12px;
+    }
+
+    .hero-title{
+      margin:0 0 12px;
+      font-size:clamp(2.2rem, 5vw, 4rem);
+      line-height:0.95;
+      letter-spacing:-1.4px;
+      text-shadow:0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    .hero-desc{
+      margin:0;
+      max-width:760px;
+      color:var(--muted);
+      font-size:1.04rem;
+      line-height:1.75;
+    }
+
+    .hero-lang{
+      display:none;
+    }
+
+    .app-kicker,
+    .shots-note,
+    .shot-placeholder{
+      display:none !important;
+    }
+
+    .shots{
+      padding:10px 0 0;
+    }
+
+    .shots-head{
+      margin:0 0 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .shots-title{
+      margin:0;
+      font-size:1.32rem;
+      letter-spacing:-0.4px;
+    }
+
+    .shots-note{
+      color:var(--muted);
+      font-size:0.94rem;
+    }
+
+    .shots-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+    }
+
+    .shot-card{
+      padding:14px;
+      border-radius:24px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.10);
+      box-shadow:var(--card-shadow);
+    }
+
+    .shot-frame{
+      position:relative;
+      aspect-ratio:10/18;
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.12);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.16), transparent 24%),
+        linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .shot-frame img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .shot-placeholder{
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:18px;
+      text-align:center;
+      color:rgba(255,255,255,0.84);
+    }
+
+    .shot-placeholder strong{
+      font-size:1.02rem;
+      letter-spacing:0.2px;
+    }
+
+    .shot-placeholder span{
+      font-size:0.86rem;
+      color:rgba(255,255,255,0.64);
+      line-height:1.5;
+    }
+
+    .shot-meta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-top:12px;
+      color:rgba(255,255,255,0.78);
+      font-size:0.88rem;
+    }
+
+    .shot-badge{
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.10);
+      font-size:0.78rem;
+      letter-spacing:0.2px;
+    }
+
+    .policy-shell{
+      margin-top:26px;
+      padding:0;
+      background:transparent;
+      color:var(--text);
+      border-radius:0;
+      box-shadow:none;
+    }
+
+    .langbar{
+      display:none;
+    }
+
+    .chips,.lang-switcher{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+    }
+
+    .chip,.lang-btn{
+      width:46px;
+      height:40px;
+      border:none;
+      border-radius:12px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.10);
+      color:#fff;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      transition:0.22s ease;
+      box-shadow:0 8px 22px rgba(0,0,0,0.18);
+      padding:0;
+      font-size:14px;
+      font-family:inherit;
+    }
+
+    .chip:hover,.lang-btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,0.13);
+      border-color:rgba(255,255,255,0.18);
+    }
+
+    .chip[aria-pressed="true"], .lang-btn.active{
+      background:rgba(255,255,255,0.18);
+      border-color:rgba(255,255,255,0.28);
+    }
+
+    .flag,.flagSvg{
+      width:22px;
+      height:22px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.10);
+      background:#fff;
+      flex:0 0 22px;
+    }
+
+    .flag svg, .flagSvg svg, .lang-btn svg{
+      width:100%;
+      height:100%;
+      display:block;
+    }
+
+    .lang-btn svg{
+      width:24px;
+      height:18px;
+      display:block;
+      border-radius:3px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.25);
+    }
+
+    .mono{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:rgba(255,255,255,0.10);
+      color:#f8f9ff;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.12);
+      font-size:12px;
+    }
+
+    .grid,.split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .lang-section > header{
+      padding:24px;
+      border-radius:24px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.10);
+      box-shadow:var(--card-shadow);
+      backdrop-filter:blur(10px);
+      margin-bottom:18px;
+    }
+
+    .split > section{
+      padding:24px;
+      border-radius:24px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.10);
+      box-shadow:var(--card-shadow);
+      backdrop-filter:blur(10px);
+    }
+
+    h1,h2,h3{color:var(--text)}
+    h1{margin:0 0 8px;font-size:28px}
+    h2{margin:0 0 12px;font-size:20px}
+    p,li{line-height:1.7;color:var(--muted)}
+    .subtitle{color:var(--muted);margin:0 0 18px}
+    .card{
+      background:rgba(255,255,255,0.07);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,0.10);
+      border-radius:24px;
+      padding:24px;
+      margin:0 0 18px;
+      box-shadow:var(--card-shadow);
+      backdrop-filter:blur(10px);
+    }
+    .mail,a.mail{
+      color:#cfe0ff;
+    }
+    .footer{
+      color:rgba(255,255,255,0.64);
+      font-size:13px;
+      margin-top:18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 24px;
+      border-radius:24px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.10);
+      box-shadow:var(--card-shadow);
+      backdrop-filter:blur(10px);
+    }
+
+    hr{
+      display:none;
+    }
+
+    .lang-section{display:none}
+    .lang-section.active{display:block}
+    .hero-lang.active{display:block}
+
+    @media (max-width:1024px){
+      .shots-grid{grid-template-columns:1fr 1fr}
+    }
+
+    @media (max-width:860px){
+      .grid,.split{grid-template-columns:1fr}
+      .app-top{grid-template-columns:1fr; text-align:center}
+      .app-logo-shell{margin:0 auto}
+      .hero-desc{margin:0 auto}
+    }
+
+    @media (max-width:640px){
+      .container{width:min(var(--max-width), calc(100% - 20px))}
+      .nav{min-height:auto;padding:14px 0}
+      .hero{padding:38px 0 10px}
+      .hero-card{padding:22px}
+      .policy-shell{padding:0}
+      .shots-grid{grid-template-columns:1fr}
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container nav">
+      <div class="nav-left">
+        <a href="index.html" class="back-home" aria-label="Retour à l'accueil">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <a href="index.html" class="brand" aria-label="Retour à l'accueil VBoldStudio">
+          <div class="brand-mark">
+            <img src="assets/logos/vboldstudio-logo.png" alt="Logo VBoldStudio" />
+          </div>
+          <div class="brand-text">
+            <strong>VBoldStudio</strong>
+          </div>
+        </a>
+      </div>
+
+      <div class="nav-right">
+        <div class="lang-switcher" id="langChips" aria-label="Choix de langue">
+        <button class="lang-btn active" type="button" data-lang="en" aria-label="English" title="English"><svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="#B22234"/><g fill="#FFFFFF"><rect y="2.307" width="60" height="2.307"/><rect y="6.923" width="60" height="2.307"/><rect y="11.538" width="60" height="2.307"/><rect y="16.153" width="60" height="2.307"/><rect y="20.769" width="60" height="2.307"/><rect y="25.384" width="60" height="2.307"/></g><rect width="24" height="16.154" fill="#3C3B6E"/></svg></button>
+            <button class="lang-btn" type="button" data-lang="fr" aria-label="Français" title="Français"><svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="2" x="0" fill="#0055A4"/><rect width="1" height="2" x="1" fill="#FFFFFF"/><rect width="1" height="2" x="2" fill="#EF4135"/></svg></button>
+            <button class="lang-btn" type="button" data-lang="de" aria-label="Deutsch" title="Deutsch"><svg viewBox="0 0 5 3" xmlns="http://www.w3.org/2000/svg"><rect width="5" height="1" fill="#000000"/><rect width="5" height="1" y="1" fill="#DD0000"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg></button>
+            <button class="lang-btn" type="button" data-lang="it" aria-label="Italiano" title="Italiano"><svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="2" x="0" fill="#009246"/><rect width="1" height="2" x="1" fill="#FFFFFF"/><rect width="1" height="2" x="2" fill="#CE2B37"/></svg></button>
+            <button class="lang-btn" type="button" data-lang="pt" aria-label="Português" title="Português"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="10" height="24" fill="#166534"/><rect width="14" height="24" x="10" fill="#dc2626"/><circle cx="10" cy="12" r="4.2" fill="#f59e0b" opacity=".95"/><circle cx="10" cy="12" r="2.2" fill="#ffffff" opacity=".95"/></svg></button>
+            <button class="lang-btn" type="button" data-lang="ptbr" aria-label="Português BR" title="Português BR"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" fill="#16a34a"/><path d="M12 4 L20 12 L12 20 L4 12 Z" fill="#f59e0b"/><circle cx="12" cy="12" r="4.2" fill="#1e3a8a"/></svg></button>
+            <button class="lang-btn" type="button" data-lang="ko" aria-label="한국어" title="한국어"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" fill="#ffffff"/><path d="M12 7.2a4.8 4.8 0 0 1 4.2 2.4c-1.2 1.4-2.7 2.1-4.2 2.1s-3-.7-4.2-2.1A4.8 4.8 0 0 1 12 7.2Z" fill="#dc2626"/><path d="M12 16.8a4.8 4.8 0 0 1-4.2-2.4c1.2-1.4 2.7-2.1 4.2-2.1s3 0.7 4.2 2.1A4.8 4.8 0 0 1 12 16.8Z" fill="#2563eb"/></svg></button>
+            <button class="lang-btn" type="button" data-lang="ja" aria-label="日本語" title="日本語"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" fill="#ffffff"/><circle cx="12" cy="12" r="5.2" fill="#dc2626"/></svg></button>
+            <button class="lang-btn" type="button" data-lang="id" aria-label="Indonesia" title="Indonesia"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="12" fill="#dc2626"/><rect width="24" height="12" y="12" fill="#ffffff"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div class="app-top">
+            <div class="app-logo-shell">
+              <img src="assets/logos/vuniverse-logo.png" alt="Logo VUniverse" />
+            </div>
+
+            <div>
+              <h1 class="hero-title">VUniverse</h1>
+              <div class="hero-lang lang-section active" data-lang="en"><p class="hero-desc">A decision-driven universe where every choice can change your resources, your progression, and the world around you.</p></div><div class="hero-lang lang-section" data-lang="fr"><p class="hero-desc">Un univers à choix où chaque décision peut changer tes ressources, ta progression et le monde autour de toi.</p></div><div class="hero-lang lang-section" data-lang="de"><p class="hero-desc">Ein entscheidungsbasiertes Universum, in dem jede Wahl deine Ressourcen, deinen Fortschritt und die Welt verändert.</p></div><div class="hero-lang lang-section" data-lang="it"><p class="hero-desc">Un universo guidato dalle decisioni, dove ogni scelta può cambiare risorse, progressione e mondo di gioco.</p></div><div class="hero-lang lang-section" data-lang="pt"><p class="hero-desc">Um universo guiado por decisões, onde cada escolha pode mudar recursos, progresso e o mundo à sua volta.</p></div><div class="hero-lang lang-section" data-lang="ptbr"><p class="hero-desc">Um universo guiado por decisões, onde cada escolha pode mudar recursos, progresso e o mundo ao seu redor.</p></div><div class="hero-lang lang-section" data-lang="ko"><p class="hero-desc">모든 선택이 자원, 진행도, 그리고 세계에 영향을 주는 선택 중심의 유니버스입니다.</p></div><div class="hero-lang lang-section" data-lang="ja"><p class="hero-desc">すべての選択が資源、進行、そして世界に影響する選択主導型ユニバースです。</p></div><div class="hero-lang lang-section" data-lang="id"><p class="hero-desc">Semesta berbasis pilihan, di mana setiap keputusan dapat mengubah sumber daya, progres, dan dunia di sekitarmu.</p></div>
+            </div>
+          </div>
+
+          <section class="shots">
+            <div class="shots-head">
+              <h2 class="shots-title">Visuels de la page</h2>
+            </div>
+
+            <div class="shots-grid">
+              
+              <article class="shot-card">
+                <div class="shot-frame">
+                  <img src="assets/screenshots/vuniverse_01.webp" alt="VUniverse screenshot 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <div class="shot-placeholder" style="display:none;">
+                    <strong>Screenshot 01</strong>
+                    <span>Ajoute ton image ici<br>assets/screenshots/vuniverse_01.webp</span>
+                  </div>
+                </div>
+                <div class="shot-meta">
+                  <span>VUniverse</span>
+                  <span class="shot-badge">01</span>
+                </div>
+              </article>
+              <article class="shot-card">
+                <div class="shot-frame">
+                  <img src="assets/screenshots/vuniverse_02.webp" alt="VUniverse screenshot 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <div class="shot-placeholder" style="display:none;">
+                    <strong>Screenshot 02</strong>
+                    <span>Ajoute ton image ici<br>assets/screenshots/vuniverse_02.webp</span>
+                  </div>
+                </div>
+                <div class="shot-meta">
+                  <span>VUniverse</span>
+                  <span class="shot-badge">02</span>
+                </div>
+              </article>
+              <article class="shot-card">
+                <div class="shot-frame">
+                  <img src="assets/screenshots/vuniverse_03.webp" alt="VUniverse screenshot 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <div class="shot-placeholder" style="display:none;">
+                    <strong>Screenshot 03</strong>
+                    <span>Ajoute ton image ici<br>assets/screenshots/vuniverse_03.webp</span>
+                  </div>
+                </div>
+                <div class="shot-meta">
+                  <span>VUniverse</span>
+                  <span class="shot-badge">03</span>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="policy-shell">
+
+<!-- ===================== EN ===================== -->
+    <section class="lang-section active" id="lang-en" data-lang="en">
+      <header>
+        <h1>VUniverse — Privacy Policy (Summary)</h1>
+        <p class="subtitle">Last updated: <span class="date-en"></span> — Contact: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          This page briefly explains how <strong>VUniverse</strong> handles certain data to serve ads via
+          <strong>Google AdMob</strong> and partners, and to operate the game profile (progress, unlocks, virtual currency/items).
+          <br><strong>Important:</strong> consent for personalized ads is managed <strong>only inside the app</strong> (Settings).
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) Data processed (summary)</h2>
+          <ul>
+            <li><strong>Ads</strong>: device advertising ID (GAID/IDFA when available), ad delivery/measurement (impressions, clicks), anti-fraud signals.</li>
+            <li><strong>Technical</strong>: device/OS, language, app version, technical events (crashes/errors) to improve stability.</li>
+            <li><strong>Game profile</strong>: a technical profile identifier (often created automatically), progress, unlocked content, preferences (e.g., language), and balances (if applicable).</li>
+            <li><strong>Purchases</strong>: data required to validate in-app purchases (e.g., “No Ads”, packs, unlocks) via the store (Google/Apple).</li>
+            <li><strong>Ad consent</strong>: your allow/deny choice stored within the app.</li>
+          </ul>
+
+          <h2>2) Purposes</h2>
+          <ul>
+            <li>Serve ads and measure performance.</li>
+            <li>Prevent fraud and ensure security.</li>
+            <li>If enabled, personalize ad delivery.</li>
+            <li>Operate the game (profile, progress, purchases, unlocks).</li>
+          </ul>
+
+          <h2>3) Partners</h2>
+          <p>
+            For ads, the app uses <strong>Google AdMob</strong> and may use technical partners (e.g. <strong>Unity Ads</strong>).
+            They apply their own privacy policies:
+          </p>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google (Ads) Policy</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity Privacy Policy</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) Your choice</h2>
+          <p>
+            You can allow/deny personalized ads in the app: <em>Settings &gt; Ads</em>.
+            If denied, <strong>non-personalized</strong> ads may still be shown.
+          </p>
+
+          <h2>5) Progress & storage</h2>
+          <p>
+            The game may store information <strong>locally</strong> (preferences, session state) and/or <strong>online</strong>
+            to secure the profile and unlocks (progress, items, currencies, etc.). This helps prevent data loss and secures purchases.
+          </p>
+
+          <h2>6) “No Ads” purchases</h2>
+          <p>
+            If you buy “No Ads”, it disables <strong>interstitial</strong> ads. <strong>Rewarded</strong> ads (if offered)
+            may remain available because they are voluntarily triggered to obtain a reward.
+          </p>
+
+          <h2>7) Contact</h2>
+          <p>
+            For any request (access, deletion, objection, etc.): <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a>.
+          </p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== FR ===================== -->
+    <section class="lang-section" id="lang-fr" data-lang="fr">
+      <header>
+        <h1>VUniverse — Règles de confidentialité</h1>
+        <p class="subtitle">Dernière mise à jour : <span class="date-fr"></span> — Contact : <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          Cette page résume comment <strong>VUniverse</strong> traite certaines données pour afficher des publicités
+          via <strong>Google AdMob</strong> et partenaires, et pour faire fonctionner le profil (progression, contenus débloqués, monnaie/objets virtuels).
+          <br><strong>Important :</strong> le choix pubs personnalisées se règle <strong>uniquement dans l’application</strong> (Paramètres).
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) Données traitées (résumé)</h2>
+          <ul>
+            <li><strong>Pubs</strong> : identifiant publicitaire (GAID/IDFA si dispo), données de diffusion/mesure (impressions, clics), signaux anti-fraude.</li>
+            <li><strong>Technique</strong> : appareil/OS, langue, version app, événements (crash/erreurs) pour améliorer la stabilité.</li>
+            <li><strong>Profil</strong> : identifiant technique (souvent créé automatiquement), progression, contenus débloqués, préférences (ex. langue), soldes éventuels (si applicable).</li>
+            <li><strong>Achats</strong> : données nécessaires à la validation des achats (ex. “No Ads”, packs, déblocages) via la plateforme (Google/Apple).</li>
+            <li><strong>Consentement</strong> : ton choix (autoriser/refuser la personnalisation) enregistré dans l’app.</li>
+          </ul>
+
+          <h2>2) Finalités</h2>
+          <ul>
+            <li>Afficher des publicités et mesurer les performances.</li>
+            <li>Lutter contre la fraude et assurer la sécurité.</li>
+            <li>Si autorisé, personnaliser les annonces.</li>
+            <li>Faire fonctionner le jeu (profil, progression, achats, déblocages).</li>
+          </ul>
+
+          <h2>3) Partenaires</h2>
+          <p>
+            Pour les annonces, l’app utilise <strong>Google AdMob</strong> et peut utiliser des partenaires (ex. <strong>Unity Ads</strong>).
+            Ils ont leurs propres règles :
+          </p>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Politique Google (pubs)</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Politique Unity</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) Ton choix</h2>
+          <p>
+            Tu peux autoriser/refuser la personnalisation dans l’app : <em>Paramètres &gt; Publicité</em>.
+            En cas de refus, des pubs <strong>non personnalisées</strong> peuvent être affichées.
+          </p>
+
+          <h2>5) Progression & stockage</h2>
+          <p>
+            Le jeu peut stocker des infos <strong>en local</strong> (préférences, état de session) et/ou <strong>en ligne</strong>
+            pour sécuriser profil et déblocages (progression, objets, monnaies, etc.). Objectif : éviter les pertes et sécuriser les achats.
+          </p>
+
+          <h2>6) Achat “No Ads”</h2>
+          <p>
+            “No Ads” désactive les pubs <strong>interstitielles</strong>. Les pubs <strong>récompensées</strong> (si présentes)
+            peuvent rester disponibles car elles sont déclenchées volontairement pour une récompense.
+          </p>
+
+          <h2>7) Contact</h2>
+          <p>
+            Pour toute demande : <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a>.
+          </p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== DE ===================== -->
+    <section class="lang-section" id="lang-de" data-lang="de">
+      <header>
+        <h1>VUniverse — Datenschutz (Kurzfassung)</h1>
+        <p class="subtitle">Zuletzt aktualisiert: <span class="date-de"></span> — Kontakt: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          Diese Seite erklärt kurz, wie <strong>VUniverse</strong> Daten verarbeitet, um Werbung über
+          <strong>Google AdMob</strong> und Partner anzuzeigen und das Spielprofil zu betreiben (Fortschritt, Freischaltungen, virtuelle Währung/Items).
+          <br><strong>Wichtig:</strong> Die Zustimmung zu personalisierter Werbung wird <strong>nur in der App</strong> verwaltet (Einstellungen).
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) Verarbeitete Daten</h2>
+          <ul>
+            <li><strong>Werbung</strong>: Werbe-ID (GAID/IDFA, falls verfügbar), Auslieferung/Messung (Impressions, Klicks), Anti-Betrug-Signale.</li>
+            <li><strong>Technik</strong>: Gerät/OS, Sprache, App-Version, technische Ereignisse (Abstürze/Fehler).</li>
+            <li><strong>Spielprofil</strong>: technischer Profil-Identifier, Fortschritt, Freischaltungen, Einstellungen, ggf. Guthaben.</li>
+            <li><strong>Käufe</strong>: Daten zur Validierung von In-App-Käufen über Google/Apple.</li>
+          </ul>
+
+          <h2>2) Zwecke</h2>
+          <ul>
+            <li>Werbung anzeigen und messen.</li>
+            <li>Sicherheit und Betrugsprävention.</li>
+            <li>Wenn erlaubt, personalisierte Werbung.</li>
+            <li>Spielbetrieb (Profil, Fortschritt, Käufe, Freischaltungen).</li>
+          </ul>
+
+          <h2>3) Partner</h2>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google Werberichtlinien</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity Datenschutz</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) Deine Wahl</h2>
+          <p>Personalisierte Werbung kannst du in der App aktivieren/deaktivieren: <em>Einstellungen &gt; Werbung</em>. Ohne Zustimmung kann nicht-personalisierte Werbung angezeigt werden.</p>
+
+          <h2>5) Fortschritt & Speicherung</h2>
+          <p>Einige Daten können lokal und/oder online gespeichert werden, um Profil, Fortschritt und Freischaltungen zu sichern.</p>
+
+          <h2>6) “No Ads”</h2>
+          <p>“No Ads” deaktiviert Interstitials. Rewarded Ads können optional weiterhin verfügbar sein.</p>
+
+          <h2>7) Kontakt</h2>
+          <p><a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== IT ===================== -->
+    <section class="lang-section" id="lang-it" data-lang="it">
+      <header>
+        <h1>VUniverse — Privacy (Sintesi)</h1>
+        <p class="subtitle">Ultimo aggiornamento: <span class="date-it"></span> — Contatto: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          Questa pagina riassume come <strong>VUniverse</strong> tratta alcuni dati per mostrare annunci tramite
+          <strong>Google AdMob</strong> e partner e per far funzionare il profilo (progresso, sblocchi, valuta/oggetti virtuali).
+          <br><strong>Importante:</strong> il consenso per gli annunci personalizzati si gestisce <strong>solo nell’app</strong> (Impostazioni).
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) Dati trattati</h2>
+          <ul>
+            <li><strong>Annunci</strong>: ID pubblicitario (GAID/IDFA se disponibile), misurazione (impression/click), segnali antifrode.</li>
+            <li><strong>Tecnici</strong>: dispositivo/OS, lingua, versione app, crash/errori.</li>
+            <li><strong>Profilo</strong>: identificatore tecnico, progresso, sblocchi, preferenze, eventuali saldi.</li>
+            <li><strong>Acquisti</strong>: dati necessari alla convalida degli acquisti in-app (Google/Apple).</li>
+          </ul>
+
+          <h2>2) Finalità</h2>
+          <ul>
+            <li>Mostrare annunci e misurarne le prestazioni.</li>
+            <li>Sicurezza e prevenzione frodi.</li>
+            <li>Se consentito, annunci personalizzati.</li>
+            <li>Funzionamento del gioco (profilo, progresso, acquisti, sblocchi).</li>
+          </ul>
+
+          <h2>3) Partner</h2>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google (Ads)</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity (Privacy)</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) La tua scelta</h2>
+          <p>Puoi consentire/negare gli annunci personalizzati nell’app: <em>Impostazioni &gt; Annunci</em>.</p>
+
+          <h2>5) Progresso & archiviazione</h2>
+          <p>Alcune informazioni possono essere salvate localmente e/o online per proteggere profilo e sblocchi.</p>
+
+          <h2>6) “No Ads”</h2>
+          <p>“No Ads” disattiva gli interstitial. Le rewarded ads possono restare disponibili su richiesta dell’utente.</p>
+
+          <h2>7) Contatto</h2>
+          <p><a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== PT ===================== -->
+    <section class="lang-section" id="lang-pt" data-lang="pt">
+      <header>
+        <h1>VUniverse — Privacidade (Resumo)</h1>
+        <p class="subtitle">Última atualização: <span class="date-pt"></span> — Contacto: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          Esta página explica, de forma resumida, como o <strong>VUniverse</strong> trata alguns dados
+          para apresentar anúncios via <strong>Google AdMob</strong> e parceiros e para operar o perfil
+          (progresso, desbloqueios, moeda/itens virtuais).
+          <br><strong>Importante:</strong> o consentimento para anúncios personalizados é gerido <strong>apenas na app</strong> (Definições).
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) Dados tratados</h2>
+          <ul>
+            <li><strong>Anúncios</strong>: ID de publicidade (GAID/IDFA se disponível), medição (impressões/cliques), sinais anti-fraude.</li>
+            <li><strong>Técnicos</strong>: dispositivo/OS, idioma, versão da app, crashes/erros.</li>
+            <li><strong>Perfil</strong>: identificador técnico, progresso, desbloqueios, preferências, saldos (se aplicável).</li>
+            <li><strong>Compras</strong>: dados necessários para validar compras in-app (Google/Apple).</li>
+          </ul>
+
+          <h2>2) Finalidades</h2>
+          <ul>
+            <li>Servir anúncios e medir desempenho.</li>
+            <li>Segurança e prevenção de fraude.</li>
+            <li>Se permitido, anúncios personalizados.</li>
+            <li>Operação do jogo (perfil, progresso, compras, desbloqueios).</li>
+          </ul>
+
+          <h2>3) Parceiros</h2>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google (Ads)</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity (Privacy)</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) A tua escolha</h2>
+          <p>Podes permitir/recusar anúncios personalizados na app: <em>Definições &gt; Anúncios</em>. Sem consentimento, podem aparecer anúncios não personalizados.</p>
+
+          <h2>5) Progresso & armazenamento</h2>
+          <p>Alguma informação pode ser guardada localmente e/ou online para proteger o perfil e os desbloqueios.</p>
+
+          <h2>6) “No Ads”</h2>
+          <p>“No Ads” desativa interstitials. Rewarded ads podem continuar disponíveis, por escolha do utilizador.</p>
+
+          <h2>7) Contacto</h2>
+          <p><a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== PT-BR ===================== -->
+    <section class="lang-section" id="lang-ptbr" data-lang="ptbr">
+      <header>
+        <h1>VUniverse — Privacidade (Resumo)</h1>
+        <p class="subtitle">Última atualização: <span class="date-ptbr"></span> — Contato: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          Esta página resume como o <strong>VUniverse</strong> trata alguns dados para exibir anúncios via
+          <strong>Google AdMob</strong> e parceiros e para operar o perfil (progresso, desbloqueios, moeda/itens virtuais).
+          <br><strong>Importante:</strong> o consentimento de anúncios personalizados é gerenciado <strong>somente no app</strong> (Configurações).
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) Dados</h2>
+          <ul>
+            <li><strong>Anúncios</strong>: ID de publicidade (GAID/IDFA se disponível), métricas (impressões/cliques), sinais antifraude.</li>
+            <li><strong>Técnico</strong>: dispositivo/OS, idioma, versão do app, falhas/erros.</li>
+            <li><strong>Perfil</strong>: identificador técnico, progresso, desbloqueios, preferências, saldos (se aplicável).</li>
+            <li><strong>Compras</strong>: dados necessários para validar compras no app (Google/Apple).</li>
+          </ul>
+
+          <h2>2) Finalidades</h2>
+          <ul>
+            <li>Exibir anúncios e medir desempenho.</li>
+            <li>Segurança e prevenção de fraude.</li>
+            <li>Se permitido, anúncios personalizados.</li>
+            <li>Operar o jogo (perfil, progresso, compras, desbloqueios).</li>
+          </ul>
+
+          <h2>3) Parceiros</h2>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google (Ads)</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity (Privacy)</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) Sua escolha</h2>
+          <p>Você pode permitir/negar anúncios personalizados no app: <em>Configurações &gt; Anúncios</em>. Se negar, anúncios não personalizados podem ser exibidos.</p>
+
+          <h2>5) Progresso & armazenamento</h2>
+          <p>Algumas informações podem ser salvas localmente e/ou online para proteger perfil e desbloqueios.</p>
+
+          <h2>6) “No Ads”</h2>
+          <p>“No Ads” desativa interstitials. Rewarded ads podem continuar disponíveis quando acionadas pelo usuário.</p>
+
+          <h2>7) Contato</h2>
+          <p><a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== KO ===================== -->
+    <section class="lang-section" id="lang-ko" data-lang="ko">
+      <header>
+        <h1>VUniverse — 개인정보 처리방침 (요약)</h1>
+        <p class="subtitle">최종 업데이트: <span class="date-ko"></span> — 문의: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          본 페이지는 <strong>VUniverse</strong>가 <strong>Google AdMob</strong> 및 파트너를 통해 광고를 제공하고,
+          게임 프로필(진행도, 잠금해제, 가상 재화/아이템)을 운영하기 위해 어떤 데이터를 처리하는지 간단히 설명합니다.
+          <br><strong>중요:</strong> 맞춤형 광고 동의는 <strong>앱 내 설정</strong>에서만 관리됩니다.
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) 처리되는 데이터</h2>
+          <ul>
+            <li><strong>광고</strong>: 광고 ID(GAID/IDFA, 가능 시), 노출/클릭 등 측정, 부정행위 방지 신호.</li>
+            <li><strong>기술</strong>: 기기/OS, 언어, 앱 버전, 충돌/오류.</li>
+            <li><strong>게임 프로필</strong>: 기술적 식별자, 진행도, 잠금해제, 설정, 잔액(해당 시).</li>
+            <li><strong>구매</strong>: 인앱 구매 검증을 위한 정보(스토어: Google/Apple).</li>
+          </ul>
+
+          <h2>2) 목적</h2>
+          <ul>
+            <li>광고 제공 및 성과 측정</li>
+            <li>보안 및 부정행위 방지</li>
+            <li>동의 시 맞춤형 광고</li>
+            <li>게임 운영(프로필/진행/구매/잠금해제)</li>
+          </ul>
+
+          <h2>3) 파트너</h2>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google 광고 정책</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity 개인정보</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) 선택</h2>
+          <p>맞춤형 광고 허용/거부는 앱에서 설정합니다: <em>설정 &gt; 광고</em>. 거부 시 비맞춤형 광고가 표시될 수 있습니다.</p>
+
+          <h2>5) 저장</h2>
+          <p>일부 정보는 로컬 및/또는 온라인에 저장되어 프로필과 잠금해제를 보호할 수 있습니다.</p>
+
+          <h2>6) No Ads</h2>
+          <p>No Ads는 인터스티셜 광고를 비활성화합니다. 보상형 광고는 사용자가 원할 때만 제공될 수 있습니다.</p>
+
+          <h2>7) 문의</h2>
+          <p><a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== JA ===================== -->
+    <section class="lang-section" id="lang-ja" data-lang="ja">
+      <header>
+        <h1>VUniverse — プライバシー (要約)</h1>
+        <p class="subtitle">最終更新日: <span class="date-ja"></span> — 連絡先: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          このページは、<strong>VUniverse</strong> が <strong>Google AdMob</strong> およびパートナーを通じて広告を表示し、
+          ゲームプロフィール（進行状況、解放、仮想通貨/アイテム）を運用するために、どのようなデータを扱うかを簡単に説明します。
+          <br><strong>重要:</strong> パーソナライズ広告の同意は <strong>アプリ内</strong>（設定）でのみ管理されます。
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) 取り扱うデータ</h2>
+          <ul>
+            <li><strong>広告</strong>: 広告ID（GAID/IDFA、利用可能な場合）、表示/クリック等の計測、不正防止シグナル。</li>
+            <li><strong>技術</strong>: 端末/OS、言語、アプリ版本、クラッシュ/エラー。</li>
+            <li><strong>ゲームプロフィール</strong>: 技術的ID、進行、解放、設定、残高（該当する場合）。</li>
+            <li><strong>購入</strong>: アプリ内課金の検証に必要な情報（Google/Apple）。</li>
+          </ul>
+
+          <h2>2) 目的</h2>
+          <ul>
+            <li>広告表示と効果測定</li>
+            <li>セキュリティと不正防止</li>
+            <li>同意がある場合のパーソナライズ</li>
+            <li>ゲーム運用（プロフィール/進行/購入/解放）</li>
+          </ul>
+
+          <h2>3) パートナー</h2>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google 広告ポリシー</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity プライバシー</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) 選択</h2>
+          <p>パーソナライズ広告の許可/拒否はアプリ内: <em>設定 &gt; 広告</em>。拒否しても非パーソナライズ広告が表示される場合があります。</p>
+
+          <h2>5) 保存</h2>
+          <p>プロフィールと解放を保護するため、情報を端末内および/またはオンラインに保存する場合があります。</p>
+
+          <h2>6) No Ads</h2>
+          <p>No Ads はインタースティシャル広告を無効化します。リワード広告は任意で利用できる場合があります。</p>
+
+          <h2>7) 連絡先</h2>
+          <p><a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== ID ===================== -->
+    <section class="lang-section" id="lang-id" data-lang="id">
+      <header>
+        <h1>VUniverse — Privasi (Ringkasan)</h1>
+        <p class="subtitle">Pembaruan terakhir: <span class="date-id"></span> — Kontak: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          Halaman ini merangkum bagaimana <strong>VUniverse</strong> memproses data tertentu untuk menayangkan iklan melalui
+          <strong>Google AdMob</strong> dan mitra, serta untuk menjalankan profil game (progres, pembukaan konten, mata uang/item virtual).
+          <br><strong>Penting:</strong> persetujuan iklan yang dipersonalisasi dikelola <strong>hanya di dalam aplikasi</strong> (Pengaturan).
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) Data yang diproses</h2>
+          <ul>
+            <li><strong>Iklan</strong>: ID iklan perangkat (GAID/IDFA bila tersedia), pengukuran (tayangan/klik), sinyal anti-penipuan.</li>
+            <li><strong>Teknis</strong>: perangkat/OS, bahasa, versi aplikasi, crash/error.</li>
+            <li><strong>Profil game</strong>: pengenal teknis, progres, pembukaan, preferensi, saldo (jika berlaku).</li>
+            <li><strong>Pembelian</strong>: data untuk memvalidasi pembelian dalam aplikasi (Google/Apple).</li>
+          </ul>
+
+          <h2>2) Tujuan</h2>
+          <ul>
+            <li>Menayangkan iklan dan mengukur performa.</li>
+            <li>Keamanan dan pencegahan penipuan.</li>
+            <li>Jika diizinkan, iklan yang dipersonalisasi.</li>
+            <li>Menjalankan game (profil, progres, pembelian, pembukaan).</li>
+          </ul>
+
+          <h2>3) Mitra</h2>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google (Ads)</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity (Privacy)</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) Pilihan Anda</h2>
+          <p>Anda bisa mengizinkan/menolak iklan personal di aplikasi: <em>Pengaturan &gt; Iklan</em>. Jika ditolak, iklan non-personalisasi masih bisa ditampilkan.</p>
+
+          <h2>5) Progres & penyimpanan</h2>
+          <p>Beberapa informasi dapat disimpan lokal dan/atau online untuk melindungi profil dan pembukaan.</p>
+
+          <h2>6) No Ads</h2>
+          <p>No Ads menonaktifkan iklan interstisial. Iklan reward dapat tetap tersedia bila dipilih pengguna.</p>
+
+          <h2>7) Kontak</h2>
+          <p><a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+        </section>
+      </div>
+    </section>
+
+    <hr>
+
+    <footer class="footer">
+      <div>© <span id="year">—</span> <strong>Vboldstudio</strong></div>
+      <div>Contact: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></div>
+    </footer>
+    </div>
+  </main>
+
+  <script>
+    (function(){
+      "use strict";
+
+      // ======= CONFIG =======
+      const DEFAULT_LANG = "en";
+      const STORAGE_KEY  = "vuniverse_privacy_lang";
+
+      function pad(n){ return String(n).padStart(2,'0'); }
+
+      // Dates
+      const now = new Date();
+      const fr = `${pad(now.getDate())}/${pad(now.getMonth()+1)}/${now.getFullYear()}`;
+      const iso = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`;
+
+      const dateAny = document.getElementById("dateAny");
+      if (dateAny) dateAny.textContent = iso;
+      document.getElementById("year").textContent = String(now.getFullYear());
+
+      const dateMap = [
+        ["date-en", iso],
+        ["date-fr", fr],
+        ["date-de", iso],
+        ["date-it", iso],
+        ["date-pt", iso],
+        ["date-ptbr", iso],
+        ["date-ko", iso],
+        ["date-ja", iso],
+        ["date-id", iso],
+      ];
+      dateMap.forEach(([cls,val])=>{
+        document.querySelectorAll("." + cls).forEach(el=> el.textContent = val);
+      });
+
+      function safeGet(k){ try { return localStorage.getItem(k); } catch(_) { return null; } }
+      function safeSet(k,v){ try { localStorage.setItem(k, v); } catch(_) {} }
+
+      const chips = Array.from(document.querySelectorAll("#langChips [data-lang]"));
+      const sections = Array.from(document.querySelectorAll(".lang-section"));
+
+      function setLang(lang){
+        if(!sections.some(s=>s.dataset.lang===lang)) lang = DEFAULT_LANG;
+
+        sections.forEach(s=> s.classList.toggle("active", s.dataset.lang === lang));
+        chips.forEach(btn=>{
+          const on = btn.dataset.lang === lang;
+          btn.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+
+        document.documentElement.setAttribute("lang", lang === "ptbr" ? "pt-BR" : lang);
+        safeSet(STORAGE_KEY, lang);
+      }
+
+      chips.forEach(btn=>{
+        btn.addEventListener("click", ()=> setLang(btn.dataset.lang));
+      });
+
+      // Init
+      let init = safeGet(STORAGE_KEY);
+      if(!init){
+        const nav = (navigator.language || navigator.userLanguage || "").toLowerCase();
+        if(nav.startsWith("fr")) init = "fr";
+        else if(nav.startsWith("de")) init = "de";
+        else if(nav.startsWith("it")) init = "it";
+        else if(nav === "pt-br" || nav.startsWith("pt-br")) init = "ptbr";
+        else if(nav.startsWith("pt")) init = "pt";
+        else if(nav.startsWith("ko")) init = "ko";
+        else if(nav.startsWith("ja")) init = "ja";
+        else if(nav.startsWith("id")) init = "id";
+        else init = DEFAULT_LANG;
+      }
+      setLang(init);
+    })();
+  </script>
+</body>
+              </html>
